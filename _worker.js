@@ -1,8 +1,11 @@
 export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    url.host = 'api.openai.com';
-    return fetch(url, { headers: request.headers, method: request.method, body: request.body });
+  async fetch(request, env) {
+    let url = new URL(request.url);
+    if (url.pathname.startsWith('/')) {
+      url.hostname = 'api.openai.com'
+      let new_request = new Request(url, request);
+      return fetch(new_request);
+    }
+    return env.ASSETS.fetch(request);
   },
 };
-
