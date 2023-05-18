@@ -1,14 +1,8 @@
-
 const TELEGRAPH_URL = 'https://api.openai.com';
 
-
-export default {
-  async fetch(request, env) {
-      const NewResponse = await handleRequest(request)
-      return NewResponse
-  },
-
-};
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
 
 async function handleRequest(request) {
   const url = new URL(request.url);
