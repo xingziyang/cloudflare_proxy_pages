@@ -22,7 +22,6 @@ async function handleRequest(request) {
   });
   const response = await fetch(modifiedRequest);
   const modifiedResponse = new Response(response.body, response);
-  // 添加允许跨域访问的响应头
   modifiedResponse.headers.set('Access-Control-Allow-Origin', headers_Origin);
   return modifiedResponse;
 }
