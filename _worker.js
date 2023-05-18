@@ -1,14 +1,8 @@
 export default {
-  async fetch(request, env) {
+  async fetch(request) {
     const url = new URL(request.url);
-    url.host = "api.openai.com";
-    // openai is already set all CORS heasders 
-    return fetch(url, {
-      headers: request.headers,
-      method: request.method,
-      body: request.body,
-      redirect: 'follow'
-    });
-  }
-}
+    url.host = 'api.openai.com';
+    return fetch(url, { headers: request.headers, method: request.method, body: request.body });
+  },
+};
 
